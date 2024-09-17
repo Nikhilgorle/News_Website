@@ -2,7 +2,6 @@ import React, { Component} from "react";
 import NewsItem from "./NewsItem";
 import spinner from "./spinner";
 import PropTypes from 'prop-types'
-import api from '../.env.local'
 
 
 export class News extends Component {
@@ -27,7 +26,9 @@ export class News extends Component {
     }
   } 
   async componentDidMount(){
-    let url=`https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-16&sortBy=publishedAt&apiKey=${api}&page=1&pageSize=${this.props.pageSize}`;
+    let url=`https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-17&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY}&page=1&pageSize=${this.props.pageSize}`;
+    // let url=`https://newsdata.io/api/1/latest?apikey=${process.env.REACT_APP_API_KEY_2}`
+    console.log(url)
     this.setState({loading:true});
     let data=await fetch(url);
     let parsedData= await data.json()
@@ -40,7 +41,7 @@ export class News extends Component {
 
   handlePrevClick = async () =>{
     console.log("Previous");
-    let url=`https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-16&sortBy=publishedAt&apiKey=32777d6b24b4423ca6569c89e7acf064&page=${this.state.page-1}&pageSize=${this.props.pageSize}`;
+    let url=`https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-16&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY}page=${this.state.page-1}&pageSize=${this.props.pageSize}`;
     this.setState({loading:true});
     let data=await fetch(url);
     let parsedData= await data.json()
@@ -53,7 +54,7 @@ export class News extends Component {
   handleNextClick = async() =>{
     if (!(this.state.page+1>Math.ceil(this.state.totalResults/this.props.pageSize))){
       console.log("Next");
-      let url=`https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-16&sortBy=publishedAt&apiKey=32777d6b24b4423ca6569c89e7acf064&page=${this.state.page+1}&pageSize=${this.props.pageSize}`;
+      let url=`https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-17&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY}&page=${this.state.page+1}&pageSize=${this.props.pageSize}`;
       this.setState({loading:true});
       let data=await fetch(url);
       let parsedData= await data.json()
@@ -71,7 +72,7 @@ export class News extends Component {
         <h1 className="text-center">NewsMonkey-Top Headlines</h1>
         {this.state.loading && <spinner/>}
         <div className="row">
-        {!this.state.loading && this.state.articles.map((element)=>{
+        {!this.state.loading && this.state.articles?.map((element)=>{
             return <div className="col-md-4" key={element.url}>
               <NewsItem  title={element.title?element.title:""} description={element.description?element.description:""} imageUrl={element.urlToImage}  newsUrl={element.url }/>    
             </div>
