@@ -1,3 +1,82 @@
+.login-container {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+/* General styling for the navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #333;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style for individual nav items */
+.nav-item {
+  margin: 0 15px;
+}
+
+/* Links styling */
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.nav-link:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+/* Align the login/logout links to the right */
+.nav-right {
+  margin-left: auto;  /* Pushes the right-aligned links to the right side */
+  display: flex;
+}
+
+
+
 .App {
   text-align: center;
 }

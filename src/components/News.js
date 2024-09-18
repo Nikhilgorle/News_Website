@@ -26,7 +26,7 @@ export class News extends Component {
     }
   } 
   async componentDidMount(){
-    let url=`https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-17&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY}&page=1&pageSize=${this.props.pageSize}`;
+    let url=`https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-18&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY}&page=1&pageSize=${this.props.pageSize}`;
     // let url=`https://newsdata.io/api/1/latest?apikey=${process.env.REACT_APP_API_KEY_2}`
     console.log(url)
     this.setState({loading:true});
@@ -41,7 +41,7 @@ export class News extends Component {
 
   handlePrevClick = async () =>{
     console.log("Previous");
-    let url=`https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-16&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY}page=${this.state.page-1}&pageSize=${this.props.pageSize}`;
+    let url=`https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-18&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY}page=${this.state.page-1}&pageSize=${this.props.pageSize}`;
     this.setState({loading:true});
     let data=await fetch(url);
     let parsedData= await data.json()
@@ -54,7 +54,7 @@ export class News extends Component {
   handleNextClick = async() =>{
     if (!(this.state.page+1>Math.ceil(this.state.totalResults/this.props.pageSize))){
       console.log("Next");
-      let url=`https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-17&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY}&page=${this.state.page+1}&pageSize=${this.props.pageSize}`;
+      let url=`https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-18&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY}&page=${this.state.page+1}&pageSize=${this.props.pageSize}`;
       this.setState({loading:true});
       let data=await fetch(url);
       let parsedData= await data.json()
